@@ -1,1 +1,2 @@
-# front-kinal-cast
+# React + Vite
+front-kinal-cast
