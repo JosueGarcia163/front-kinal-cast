@@ -15,13 +15,15 @@ export const userRegister = () => {
         setIsLoading(false)
         if (response.error) {
             toast.error(response.e?.response?.data || "Error al registrar la cuenta.")
+        }else{
+            toast.success(response.data.msg)
+
         }
         //userDetails es un objeto que se recibe de la API
         const { userDetails } = response.data
 
         //LocalStorage es un objeto que se usa para guardar datos en el navegador
         localStorage.setItem("user", JSON.stringify(userDetails))
-
         navigate("/")
         
     }
