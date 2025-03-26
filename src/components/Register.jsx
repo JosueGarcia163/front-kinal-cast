@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Input } from './Input'
+import { Logo } from './Logo'
+import { userRegister } from '../shared/hooks/useRegister'
 import {
     validateEmail,
     validatePassword,
@@ -13,8 +15,8 @@ import {
 } from '../shared/validators'
 
 
-
 export const Register = ({ switchAuthHandler }) => {
+    const { register, isLoading } = userRegister()
     const [formState, setFormState] = useState({
         email: {
             value: "",
@@ -51,6 +53,11 @@ export const Register = ({ switchAuthHandler }) => {
         }))
     }
 
+    const handleRegister = (event) => {
+        event.preventDefault()
+        register(formState.email.value, formState.password.value, formState.username.value)
+    }
+
     const handleInputValidationOnBlur = (value, field) => {
         let isValid = false
         switch (field) {
@@ -78,8 +85,13 @@ export const Register = ({ switchAuthHandler }) => {
             }
         }))
     }
+    const isSubmitDisabled = isLoading || !formState.email.isValid || 
+    !formState.password.isValid || !formState.passwordConfirm.isValid || 
+    !formState.username.isValid
+
     return (
         <div className="register-container">
+            <Logo text={"Formulario de Register"} />
             <form className="auth-form">
                 <Input
                     field="email"
@@ -108,29 +120,26 @@ export const Register = ({ switchAuthHandler }) => {
                     label="Password"
                     value={formState.password.value}
                     onChangeHandler={handleInputValueChange}
-                    type="text"
+                    type="password"
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.password.showError}
                     validationMessage={validatePasswordMessage}
                 />
-
-
 
                 <Input
                     field="passwordConfirm"
                     label="Password Confirm"
                     value={formState.passwordConfirm.value}
                     onChangeHandler={handleInputValueChange}
-                    type="text"
+                    type="password"
                     onBlurHandler={handleInputValidationOnBlur}
                     showErrorMessage={formState.passwordConfirm.showError}
                     validationMessage={validatePasswordConfirmMessage}
                 />
+                <button onClick={handleRegister} disabled={isSubmitDisabled}>Crear Cuenta</button>
             </form>
-            <h1>Hola estoy en el Register</h1>
             <span onClick={switchAuthHandler} className='auth-form-switch-label'>¿
                 Ya tienes una cuenta? Inicia Sesion!</span>
-
         </div>
     )
 }
