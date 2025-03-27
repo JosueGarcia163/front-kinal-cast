@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Input } from './Input'
 import { Logo } from './Logo'
-import { userRegister } from '../shared/hooks/useRegister'
+import { useRegister } from '../shared/hooks/useRegister'
 import {
     validateEmail,
     validatePassword,
@@ -16,7 +16,7 @@ import {
 
 
 export const Register = ({ switchAuthHandler }) => {
-    const { register, isLoading } = userRegister()
+    const { register, isLoading } = useRegister()
     const [formState, setFormState] = useState({
         email: {
             value: "",
@@ -30,7 +30,7 @@ export const Register = ({ switchAuthHandler }) => {
             showError: false,
         },
 
-        passwordConfirm: {
+        passwordConf: {
             value: "",
             isValid: false,
             showError: false,
@@ -56,7 +56,7 @@ export const Register = ({ switchAuthHandler }) => {
     const handleRegister = (event) => {
         event.preventDefault()
         register(formState.email.value, formState.password.value, formState.username.value)
-    }
+      }
 
     const handleInputValidationOnBlur = (value, field) => {
         let isValid = false
@@ -67,8 +67,8 @@ export const Register = ({ switchAuthHandler }) => {
             case "password":
                 isValid = validatePassword(value)
                 break
-            case "passwordConfirm":
-                isValid = validatePasswordConfirm(value, formState.password.value)
+            case "passwordConf":
+                isValid = validatePasswordConfirm( formState.password.value, value)
                 break
             case "username":
                 isValid = validateUsername(value)
@@ -86,12 +86,12 @@ export const Register = ({ switchAuthHandler }) => {
         }))
     }
     const isSubmitDisabled = isLoading || !formState.email.isValid || 
-    !formState.password.isValid || !formState.passwordConfirm.isValid || 
+    !formState.password.isValid || !formState.passwordConf.isValid || 
     !formState.username.isValid
 
     return (
         <div className="register-container">
-            <Logo text={"Formulario de Register"} />
+            <Logo text={"Formulario de registro"} />
             <form className="auth-form">
                 <Input
                     field="email"
@@ -127,13 +127,13 @@ export const Register = ({ switchAuthHandler }) => {
                 />
 
                 <Input
-                    field="passwordConfirm"
+                    field="passwordConf"
                     label="Password Confirm"
-                    value={formState.passwordConfirm.value}
+                    value={formState.passwordConf.value}
                     onChangeHandler={handleInputValueChange}
                     type="password"
                     onBlurHandler={handleInputValidationOnBlur}
-                    showErrorMessage={formState.passwordConfirm.showError}
+                    showErrorMessage={formState.passwordConf.showError}
                     validationMessage={validatePasswordConfirmMessage}
                 />
                 <button onClick={handleRegister} disabled={isSubmitDisabled}>Crear Cuenta</button>
@@ -146,5 +146,4 @@ export const Register = ({ switchAuthHandler }) => {
 
 Register.propTypes = {
     switchAuthHandler: PropTypes.func.isRequired
-
 }

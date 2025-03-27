@@ -21,7 +21,6 @@ export const Logo = ({ text }) => {
 }
 
 
-Logo.PropTypes = {
+Logo.propTypes = {
     text: PropTypes.string.isRequired
-
 }

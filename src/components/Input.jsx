@@ -54,7 +54,7 @@ Input.propTypes = {
     value: PropTypes.string.isRequired,
     onChangeHandler: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
-    showErrorMesaage: PropTypes.bool.isRequired,
+    showErrorMessage: PropTypes.bool.isRequired,
     validationMessage: PropTypes.string.isRequired,
     onBlurHandler: PropTypes.func.isRequired,
     textArea: PropTypes.bool

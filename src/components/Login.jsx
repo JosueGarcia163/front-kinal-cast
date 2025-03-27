@@ -1,4 +1,4 @@
-import React, {useState}from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Input } from './Input'
 import { Logo } from './Logo'
@@ -8,9 +8,11 @@ import {
     validateEmailMessage,
     validatePasswordMessage
 } from '../shared/validators'
+import { useLogin } from '../shared/hooks'
 
 
 export const Login = ({ switchAuthHandler }) => {
+    const {login, isLoading} = useLogin()
     const [formState, setFormState] = useState({
         email: {
             value: "",
@@ -34,6 +36,17 @@ export const Login = ({ switchAuthHandler }) => {
             }
         }))
     }
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+
+        login(formState.email.value, formState.password.value);
+    };
+
+    const isSubmitButtonDisabled =
+        isLoading || !formState.password.isValid || !formState.email.isValid;
+
+
     const handleInputValidationOnBlur = (value, field) => {
         let isValid = false
         switch (field) {
@@ -80,7 +93,9 @@ export const Login = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.password.showError}
                     validationMessage={validatePasswordMessage}
                 />
-                <button>Log In</button>
+                <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
+                    Iniciar sesión
+                </button>
             </form>
             <span onClick={switchAuthHandler} className='auth-form-switch-label'>¿
                 Aun no tienes una cuenta? registrate!</span>
