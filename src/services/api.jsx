@@ -1,6 +1,8 @@
+//axios una libreria de peticiones http.
 import axios from "axios";
 
 const apiClient = axios.create({
+    //
     baseURL: "http://localhost:3001/kinalCast/v2",
     timeout: 5000,
     //Esto lo hacemos por que http va a ser local y no publica.

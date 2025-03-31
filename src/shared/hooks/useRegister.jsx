@@ -23,6 +23,7 @@ export const useRegister = () => {
         const { userDetails } = response.data
 
         //LocalStorage es un objeto que se usa para guardar datos en el navegador
+        //Con JSON.stringify convertimos el objeto a una cadena de texo para poder guardarlo en el localStorage
         localStorage.setItem("user", JSON.stringify(userDetails))
         navigate("/")
         

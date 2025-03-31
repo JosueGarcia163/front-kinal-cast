@@ -56,7 +56,7 @@ export const Register = ({ switchAuthHandler }) => {
     const handleRegister = (event) => {
         event.preventDefault()
         register(formState.email.value, formState.password.value, formState.username.value)
-      }
+    }
 
     const handleInputValidationOnBlur = (value, field) => {
         let isValid = false
@@ -68,7 +68,7 @@ export const Register = ({ switchAuthHandler }) => {
                 isValid = validatePassword(value)
                 break
             case "passwordConf":
-                isValid = validatePasswordConfirm( formState.password.value, value)
+                isValid = validatePasswordConfirm(formState.password.value, value)
                 break
             case "username":
                 isValid = validateUsername(value)
@@ -85,9 +85,9 @@ export const Register = ({ switchAuthHandler }) => {
             }
         }))
     }
-    const isSubmitDisabled = isLoading || !formState.email.isValid || 
-    !formState.password.isValid || !formState.passwordConf.isValid || 
-    !formState.username.isValid
+    const isSubmitDisabled = isLoading || !formState.email.isValid ||
+        !formState.password.isValid || !formState.passwordConf.isValid ||
+        !formState.username.isValid
 
     return (
         <div className="register-container">

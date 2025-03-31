@@ -1,4 +1,5 @@
 export const validateUsername = (username) => {
+  // Es una expresion regular que valida el nombre de usuario.
   const regex = /^\S{3,8}$/
   return regex.test(username)
 }
