@@ -32,10 +32,10 @@ export const useLogin = () => {
         }
 
         //Si la respuesta no tiene error, extraemos el token y lo guardamos en el localStorage y navegamos a la ruta principal.
-        const { token } = response.data.userDetails
+        const { userDetails } = response.data
 
         //Lo guardamos en el localStorage para guardarlo y que no se pierda al refrescar la pagina.
-        localStorage.setItem("token", token)
+        localStorage.setItem("user", JSON.stringify(userDetails))
 
         //Redirigimos al usuario a el dashboard.
         navigate("/")
