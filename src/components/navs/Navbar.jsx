@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 
 const NavLogo = ({ onClickHandler }) => {
     return (
-        <div className='nav-Logo-container' onClick={onClickHandler}>
+        <div className='nav-logo-container' onClick={onClickHandler}>
             <img
-                className='nav-Logo'
+                className='nav-logo'
                 width="100%"
                 height="100%"
                 src="https://i.ibb.co/9h0ZZfj/Escudo-Transparente.png"

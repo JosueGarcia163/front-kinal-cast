@@ -4,7 +4,7 @@ import { getChannels as getChannelsRequest } from "../../services";
 
 
 export const useChannels = () =>{
-    const [channels, setChannels] = useState({});
+    const [channels, setChannels] = useState([]);
 
     const getChannels = async (isLogged = false) =>{
         const channelsData = await getChannelsRequest()

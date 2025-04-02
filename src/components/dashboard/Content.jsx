@@ -12,7 +12,6 @@ export const Content = ({channels}) => {
             <Route path= 'settings' element={<Settings/>}/>
             <Route path= 'channels' element={<Channels channels={channels}/>}/>
         </Routes>
-
     </div>
   )
 }
