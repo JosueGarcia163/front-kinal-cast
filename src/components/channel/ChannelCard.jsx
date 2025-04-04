@@ -12,6 +12,11 @@ const ChannelAvatar = ({url}) => {
 
     )
 }
+
+ChannelAvatar.propTypes = {
+    url: PropTypes.string.isRequired
+}
+
 export const ChannelCard = ({
     title, 
     username,
@@ -34,9 +39,6 @@ export const ChannelCard = ({
   )
 }
 
-ChannelAvatar.propTypes = {
-    url: PropTypes.string.isRequired
-}
 
 ChannelCard.propTypes = {
     tittle: PropTypes.string.isRequired,
